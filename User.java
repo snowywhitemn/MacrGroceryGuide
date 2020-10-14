@@ -8,11 +8,15 @@ package edu.metrostate.ics.macrogroceryguide.model;
 public class User {
 
     private Assessment assesment;
+    private MacroTotals macroTotals;
 
     private String username;
     private String password;
     private String firstName;
     private String lastName;
+
+    //macro totals
+
 
 
     public User(String username, String password, String firstName, String lastName) {
