@@ -14,7 +14,8 @@ public class MacroTotals {
     private double fatGrams;
     private double proteinGrams;
     private double carbGrams;
-    private double tdee;
+    private double totalCals;
+    private int weightLossGoal;
     
     private final double FAT_PERCENT = 0.2; 
     private final double PROTEIN_PERCENT = 0.3;
@@ -23,9 +24,17 @@ public class MacroTotals {
     private final int FOUR_CAL_PER_GRAM = 4; 
     private final int NINE_CAL_PER_GRAM = 9; 
 
-    public MacroTotals(double tdee){
-        
-        this.tdee = tdee;
+    public MacroTotals(double tdee, int goal){
+
+
+        if(goal == 0){
+            totalCals = (tdee - 500);
+        }else if(goal == 1){
+            totalCals = tdee;
+        }else{
+            totalCals = (tdee + 500);
+        }
+
         this.fatGrams = calcFatGrams();
         this.proteinGrams = calcProteinGrams();
         this.carbGrams = calcCarbGrams();
@@ -39,7 +48,7 @@ public class MacroTotals {
      * @return fatGrams
      */
     private double calcFatGrams() {
-        return ((tdee * FAT_PERCENT) / NINE_CAL_PER_GRAM);
+        return ((totalCals * FAT_PERCENT) / NINE_CAL_PER_GRAM);
     }
 
     /**
@@ -47,7 +56,7 @@ public class MacroTotals {
      * @return proteinGrams
      */
     private double calcProteinGrams() {
-        return ((tdee * PROTEIN_PERCENT) / FOUR_CAL_PER_GRAM);
+        return ((totalCals * PROTEIN_PERCENT) / FOUR_CAL_PER_GRAM);
     }
 
     /**
@@ -55,6 +64,6 @@ public class MacroTotals {
      * @return
      */
     private double calcCarbGrams() {
-        return ((tdee * CARB_PERCENT) / FOUR_CAL_PER_GRAM);
+        return ((totalCals * CARB_PERCENT) / FOUR_CAL_PER_GRAM);
     }
 }
